@@ -1,0 +1,40 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.9.0
+    ports:
+      - 2181:2181
+    env_file: .env
+
+  kafka:
+    image: confluentinc/cp-kafka:7.9.0
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    env_file: .env
+
+  backend:
+    build:
+      context: .
+      target: dev
+    depends_on:
+      - mongodb
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+  mongodb:
+    image: mongo:8.0.4
+    ports:
+      - 27017:27017
+    env_file: .env
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+
+volumes:
+  node_modules:
+  mongo_data:
+  mongo_config:
