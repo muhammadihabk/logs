@@ -1,8 +1,12 @@
 # Logs
 
 # Architecture
+
 ![architecture diagram](github/images/architecture.png)
+
 # Usage
+
+- Copy content of `.env.example` to `.env`
 
 - Navigate to project root directory and execute:
 

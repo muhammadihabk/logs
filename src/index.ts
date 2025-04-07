@@ -3,6 +3,7 @@ import { UserActivityRepository } from './domain/user-activity.repository';
 import { UserActivityService } from './domain/user-activity.service';
 import { Consumer } from './infrastructure/kafka/consumer';
 import { Producer } from './infrastructure/kafka/producer';
+import 'dotenv/config'
 
 const userActivityRepository = new UserActivityRepository();
 export const userActivityService = new UserActivityService(userActivityRepository);
